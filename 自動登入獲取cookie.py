@@ -8,6 +8,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 # 設定 User-Agent
+# 此步驟避免被判斷為機器人爬蟲程式，設置完成不會出現拼圖驗證
 headers = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/2.0'
 }
@@ -35,7 +36,10 @@ EC.presence_of_element_located((By.NAME, "password"))
 # your_password修改為密碼
 password_input.send_keys("your_password")
 
+# 完成上面步驟請手動按登入
+
 # 等待頁面加載
+# 此行程式用於完成新環境登入訊驗證碼的步驟
 time.sleep(30)
 
 # 獲取 cookies
