@@ -1,0 +1,37 @@
+# 此程式採用呼叫shopeemobile V4 API達成獲取cookie的目的，可以有效防止爬蟲檢測
+
+import pickle
+import requests
+import time
+
+# 登入蝦皮購物
+def login_shopee():
+    # 登入網址
+    login_url = "https://c-api-bit.shopeemobile.com/v4/tr/tw"
+
+    # 登入資訊
+    payload = {
+        "username": "your_username",
+        "password": "your_password"
+    }
+
+    # 發送 POST 請求進行登入
+    response = requests.post(login_url, data=payload)
+
+    # 等待頁面加載
+    time.sleep(5)
+
+        # 判斷登入是否成功並輸出結果
+    if response.status_code == 200:
+        print("success")
+    else:
+        print("fail")
+    
+    # 保存cookie到cookies.pkl
+    with open('cookies.pkl', 'wb') as f:
+        pickle.dump(response.cookies, f)
+    
+# 主程式
+if __name__ == "__main__":
+    # 登入蝦皮購物
+    login_shopee()
